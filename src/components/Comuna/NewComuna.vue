@@ -71,10 +71,6 @@ export default {
     },
     async saveComuna() {
       this.comuna.muni_codi = parseInt(this.muni_codi)
-
-        console.log("Objeto comuna antes del envío:", JSON.parse(JSON.stringify(this.comuna)))
-  console.log("Tipo de comu_nomb:", typeof this.comuna.comu_nomb)
-  console.log("Tipo de muni_codi:", typeof this.comuna.muni_codi)
       const res = await axios.post('http://127.0.0.1:8000/api/comunas', this.comuna)
       if (res.status === 200) {
         this.$router.push({ name: 'Comunas' })
