@@ -47,7 +47,7 @@ const routes = [
     name: 'NewMunicipio',
     component: NewMunicipio
   },
-    {
+  {
       path: '/departamentos',
     name: 'Departamentos',
     component: Departamentos
@@ -61,6 +61,21 @@ const routes = [
     path: '/add-departamento/',
     name: 'NewDepartamento',
     component: NewDepartamento
+  },
+  {
+    path: '/paises',
+    name: 'Paises',
+    component: Paises
+  },
+    {
+    path: '/editar-pais/:id',
+    name: 'EditarPais',
+    component: EditarPais
+  },
+  {
+    path: '/add-pais/',
+    name: 'NewPais',
+    component: NewPais
   },
   {
     path: '/about',
