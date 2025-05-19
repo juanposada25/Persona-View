@@ -42,6 +42,21 @@ const routes = [
     name: 'NewMunicipio',
     component: NewMunicipio
   },
+    {
+      path: '/departamentos',
+    name: 'Departamentos',
+    component: Departamentos
+  },
+    {
+    path: '/editar-departamento/:id',
+    name: 'EditarDepartamento',
+    component: EditarDepartamento
+  },
+  {
+    path: '/add-departamento/',
+    name: 'NewDepartamento',
+    component: NewDepartamento
+  },
   {
     path: '/about',
     name: 'about',
