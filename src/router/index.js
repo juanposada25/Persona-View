@@ -9,6 +9,9 @@ import NewMunicipio from '@/components/Municipio/NewMunicipio.vue'
 import Departamentos from '@/views/Departamentos.vue'
 import EditarDepartamento from '@/components/Departamento/EditarDepartamento.vue'
 import NewDepartamento from '@/components/Departamento/NewDepartamento.vue'
+import Paises from '@/views/Paises.vue'
+import EditarPais from '@/components/Pais/EditarPais.vue'
+import NewPais from '@/components/Pais/NewPais.vue'
 
 
 const routes = [
