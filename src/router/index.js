@@ -25,6 +25,21 @@ const routes = [
     component: NewComuna
   },
   {
+      path: '/municipios',
+    name: 'Municipios',
+    component: Municipios
+  },
+    {
+    path: '/editar-municipio/:id',
+    name: 'EditarMunicipio',
+    component: EditarMunicipio
+  },
+  {
+    path: '/add-municipio/',
+    name: 'EditarMunicipio',
+    component: NewMunicipio
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting
