@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Comunas from '@/views/Comunas.vue'
-
+import EditarComuna from '@/components/Comuna/EditarComuna.vue'
+import NewComuna from '@/components/Comuna/NewComuna.vue'
 const routes = [
   {
     path: '/',
