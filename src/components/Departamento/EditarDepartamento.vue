@@ -1,19 +1,19 @@
 <template>
   <div class="container text-start">
-    <h1 class="text-primary fw-bold">Nuevo</h1>
+    <h1 class="text-primary fw-bold">Editar</h1>
     <div class="card">
       <div class="card-header fw-bold">
         Departamento
       </div>
       <div class="card-body">
-        <form @submit.prevent="saveDepartamento">
+        <form @submit.prevent="updateDepartamento">
 
           <div class="row mb-3">
             <label for="depa_codi" class="form-label">Código</label>
             <div class="input-group">
               <div class="input-group-text"> <font-awesome-icon icon="tag" /></div>
               <input type="text" class="form-control" id="depa_codi" placeholder="Código departamento" disabled
-                     v-model="departamento.depa_codi" />
+                v-model="departamento.depa_codi" />
             </div>
           </div>
 
@@ -21,8 +21,8 @@
             <label for="depa_nomb" class="form-label">Nombre :</label>
             <div class="input-group">
               <div class="input-group-text"> <font-awesome-icon icon="building" /></div>
-              <input type="text" class="form-control" id="depa_nomb" placeholder="Nombre del Departamento"
-                     v-model="departamento.depa_nomb" />
+              <input type="text" class="form-control" id="depa_nomb" placeholder="Nombre del departamento"
+                v-model="departamento.depa_nomb" />
             </div>
           </div>
 
@@ -30,9 +30,8 @@
             <label for="pais_codi" class="form-label">País :</label>
             <div class="input-group">
               <div class="input-group-text"> <font-awesome-icon icon="flag" /></div>
-              <select class="form-select" v-model="pais_codi">
-                <option selected value="0">Seleccione un país</option>
-                <option v-for="pais in paises" :value="pais.pais_codi" 
+              <select class="form-select" v-model="departamento.pais_codi">
+                <option v-for="pais in paises" :value="pais.pais_codi"
                         :key="pais.pais_codi">
                   {{ pais.pais_nomb }}
                 </option>
@@ -40,8 +39,9 @@
             </div>
           </div>
 
-          <button class="btn btn-primary" type="submit">Guardar</button>
-          <button class="btn btn-secondary mx-2" @click="cancel">Cancelar</button>
+          <button class="btn btn-primary" type="submit">Actualizar</button>
+          <button class="btn btn-secondary mx-2" @click="cancelar">Cancelar</button>
+
         </form>
       </div>
     </div>
@@ -53,7 +53,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 export default {
-  name: 'NewDepartamento',
+  name: 'EditarDepartamento',
   data() {
     return {
       departamento: {
@@ -61,23 +61,21 @@ export default {
         depa_nomb: '',
         pais_codi: 0
       },
-      paises: [],
-      pais_codi: '0'
+      paises: []
     }
   },
   methods: {
-    cancel() {
+    cancelar() {
       this.$router.push({ name: 'Departamentos' })
     },
-    async saveDepartamento() {
-      this.departamento.pais_codi = this.pais_codi
-      const res = await axios.post('http://127.0.0.1:8000/api/departamentos', this.departamento)
+    async updateDepartamento() {
+      const res = await axios.put(`http://127.0.0.1:8000/api/departamentos/${this.departamento.depa_codi}`, this.departamento)
       if (res.status === 200) {
         this.$router.push({ name: 'Departamentos' })
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'Departamento registrado exitosamente',
+          title: 'Departamento actualizado exitosamente',
           showConfirmButton: false,
           timer: 2000
         })
@@ -85,8 +83,10 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://127.0.0.1:8000/api/paises')
+    this.departamento.depa_codi = this.$route.params.id
+    axios.get(`http://127.0.0.1:8000/api/departamentos/${this.departamento.depa_codi}`)
       .then(response => {
+        this.departamento = response.data.departamento
         this.paises = response.data.paises
       })
   }

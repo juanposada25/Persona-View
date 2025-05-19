@@ -3,7 +3,8 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/comunas">Comunas</router-link> |
-    <router-link to="/municipios">Municipios</router-link>
+    <router-link to="/municipios">Municipios</router-link> |
+    <router-link to="/departamentos">Departamentos</router-link>
   </nav>
   <router-view/>
 </template>
